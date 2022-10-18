@@ -18,14 +18,9 @@ class ChromeTest {
 
     WebDriver driver;
 
-    @BeforeAll
-    static void setupAll() {
-        WebDriverManager.chromedriver().setup();
-    }
-
     @BeforeEach
     void setup() {
-        driver = new ChromeDriver();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     @AfterEach
