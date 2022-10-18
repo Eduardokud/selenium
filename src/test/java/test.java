@@ -11,31 +11,28 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+
+
 class ChromeTest {
 
-    private WebDriver driver;
-
+    WebDriver driver;
 
     @BeforeAll
     static void setupAll() {
-        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
     void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-
+        driver = new ChromeDriver();
     }
 
     @AfterEach
     void teardown() {
         driver.quit();
-        driver = null;
     }
+
 
     @Test
     void test() {
