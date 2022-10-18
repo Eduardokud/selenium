@@ -18,14 +18,17 @@ class ChromeTest {
 
     WebDriver driver;
 
+    WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker()
+            .enableVnc().enableRecording();
+
     @BeforeEach
     void setup() {
-        driver = WebDriverManager.chromedriver().create();
+        driver = wdm.create();
     }
 
     @AfterEach
     void teardown() {
-        driver.quit();
+        wdm.quit();
     }
 
 
