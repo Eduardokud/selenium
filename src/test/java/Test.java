@@ -31,6 +31,7 @@ class SiteTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:9999/");
     }
 
     @AfterEach
@@ -41,30 +42,22 @@ class SiteTest {
 
     @Test
     void ValidData() {
-
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[type=\"text\"]")).sendKeys("Иванов Олег");
         driver.findElement(By.cssSelector("[type=\"tel\"]")).sendKeys("+79807665674");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__text")).click();
         String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
-
-
     }
 
     @Test
     void ValidNameWithHyphen() {
-
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[type=\"text\"]")).sendKeys("Иванов-Олег");
         driver.findElement(By.cssSelector("[type=\"tel\"]")).sendKeys("+70000000000");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__text")).click();
         String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
-
-
     }
 
 }
